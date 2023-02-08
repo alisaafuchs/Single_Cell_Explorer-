@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styling.css">
+</head>
+<body>
+
+    <div class="topnav" id="myTopnav">
+        <a href="/" > Home</a>
+        <a href="/upload"> Import Data</a>
+        <a href="/analysis"> Analysis</a>
+        <a href="/results" class="active"> Clustering results</a>
+        <a href="/tables"> Subset Analysis </a>
+        <a href="javascript:void(0);" class="icon">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+    
+    <div style="padding-left:16px">
+
+    <!-- Choose clustering results button -->
+    <!-- <form action="/results">
+    <p>Please choose clustering results:</p>
+    <input type="text" 
+          name="gene" 
+          placeholder="gene name"
+          required
+          list="gene_names">
+    <button>Submit</button>
+    </form>
+    <datalist id="gene_names">
+        {% for gene in gene_names %}
+        <option>{{ gene }}</option>
+        {% endfor %}
+    </datalist> -->
+
+    <div> 
+        {% if data1 %}
+            <h2> Clustering results </h2>
+
+
+            <!-- Choose embedding button -->
+            <form action="/results">
+                <h3> Please select an embedding: </h3>
+                <input type="text" name="map" 
+                    placeholder="          "
+                required list="maps">
+                <button>Submit</button>
+            </form>
+            <datalist id="maps">
+                {% for map in maps %}
+                <option>{{ map }}</option>
+            {% endfor %}
+            </datalist>
+
+            <img src='data:image/png;base64, {{ data1 }} '/>
+
+            <div>
+                <form action="/results/save_umap">
+                    <p> To download figure click here
+                        <button> Download pdf </button> 
+                    </p>
+                </form>
+            </div>
+
+        {% else %}
+        <h2> No clustering results present </h2>
+        <h2> Please perform the analysis </h2>
+        {% endif %}
+    </div>
+
+    <div>
+    {% if data2 %}
+        <!-- Choose gene button -->
+        <form action="/results">
+            <h3> Please select a gene: </h3>
+            <input type="text" name="gene" 
+                placeholder="gene name"
+                required list="gene_names">
+            <button>Submit</button>
+        </form>
+        <datalist id="gene_names">
+            {% for gene in gene_names %}
+                <option>{{ gene }}</option>
+            {% endfor %}
+        </datalist>
+
+        <img src='data:image/png;base64, {{ data2 }} '/>
+        </div>
+        <div>
+        <form action="/results/save_gene_umap">
+            <p> To download figure click here
+                <button> Download pdf </button> 
+            </p>
+        </form>
+    {% endif %}
+    </div>
+
+    <div> 
+        {% if data3 %}
+            <h2> Differentially expressed genes </h2>
+
+            <div>
+                <form action="/results/save_table">
+                    <p> To save top 20 differentially express genes click here
+                        <button> Download csv </button> 
+                    </p>
+                </form>
+            </div>
+
+            <div>
+            <img src='data:image/png;base64, {{ data3 }} '/>
+            </div>
+
+            <div>
+                <form action="/results/save_dotplot">
+                    <p> To download figure click here
+                        <button> Download pdf </button> 
+                    </p>
+                </form>
+            </div>
+
+        {% endif %}
+    </div>
+
+
+</body>
+</html>

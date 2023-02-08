@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styling.css">
+</head>
+<body>
+
+    <div class="topnav" id="myTopnav">
+        <a href="/" > Home</a>
+        <a href="/upload"> Import Data</a>
+        <a href="/analysis" class="active"> Analysis</a>
+        <a href="/results"> Clustering results</a>
+        <a href="/tables"> Subset Analysis </a>
+        <a href="javascript:void(0);" class="icon">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+    
+    <div style="padding-left:16px">
+
+
+    <h2>This is your current data</h2>
+    <div>
+        <p> {{ print_adata }} </p>
+    </div>
+
+    <div>
+    <form action="/results/direct">
+        <p> To visualize the results directly click here
+            <button> Use this data </button> 
+        </p>
+    </form>
+    </div>
+
+    <br>
+    <h2>Analysis workflow</h2>
+    <div>
+        <form action="/analysis/forward/">
+        <ol>
+            <li>Find highly variable genes</li>
+            <br>
+            <li>Principal Component Analysis </li>
+            <br>
+            <li>Compute the neighborhood graph</li>
+            <br>
+            <li>Compute the neighborhood graph, chose n_neighbors:
+                <input type="number"
+                name="n_neighbors" 
+                placeholder="10">
+            </li>
+            <br>
+            <li> Compute UMAP</li>
+            <br>
+            <li> Clustering (method = Leiden) </li>
+            <br>
+            <li> Find differentially expressed genes in each group (method = Wilcoxon)</li>
+        
+        </ol>
+
+            <button type="submit">Analyze Data</button>
+        </form>
+    </div>
+
+    <div>
+        {% if print_adata2 %}
+        <div>
+            <p> {{ forward_message }} </p>
+        </div>
+
+        <h2>This is your data with clustering results </h2>
+            <p> {{ print_adata2 }} </p>
+
+
+        {% endif %}
+    </div>
+
+    <div>
+        <form action="/analysis/save">
+            <p> To downloadthe file click here
+                <button> Download </button> 
+            </p>
+        </form>
+    </div>
+
+
+</body>
+</html>

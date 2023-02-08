@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styling.css">
+</head>
+<body>
+
+    <div class="topnav" id="myTopnav">
+        <a href="/" > Home</a>
+        <a href="/upload"> Import Data</a>
+        <a href="/analysis"> Analysis</a>
+        <a href="/results"> Clustering results</a>
+        <a href="/tables" class="active"> Subset Analysis</a>
+        <a href="javascript:void(0);" class="icon">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+    
+    <div style="padding-left:16px">
+
+    <div> 
+
+        <h2> Subset analysis </h2>
+            <div>
+            {{ resp|safe }}
+            </div>
+
+    </div>
+
+
+
+</body>
+</html>
