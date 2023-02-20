@@ -30,7 +30,6 @@ flatbuffers==1.12
 flatten-dict==0.4.2
 fonttools==4.38.0
 fsspec==0.7.4
-gunicorn==20.1.0
 h5py==3.7.0
 idna==3.4
 igraph @ file:///Users/runner/miniforge3/conda-bld/python-igraph_1673616374829/work
